@@ -41,8 +41,13 @@ libraries to use Protocol Buffers from pure C (not C++).
 %if "%{?dist}" != ".el7"
 %package compiler
 Summary: Protocol Buffers C compiler
+%if 0%{?suse_version} >= 1315
+Group: Development/Libraries/C and C++
+Requires: lib%{name}1 = %{version}-%{release}
+%else
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+%endif
 
 %description compiler
 This package contains a modified version of the Protocol Buffers
@@ -57,6 +62,8 @@ Requires:       lib%{name}1 = %{version}-%{release}
 %else
 Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
+%endif
+%if "%{?dist}" != ".el7"
 Requires:       %{name}-compiler = %{version}-%{release}
 %endif
 
@@ -97,6 +104,7 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 %else
 %files
 %endif
+%defattr(-,root,root,-)
 %{_libdir}/libprotobuf-c.so.*
 %doc TODO LICENSE ChangeLog
 
