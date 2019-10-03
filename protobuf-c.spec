@@ -19,6 +19,8 @@ BuildRequires:  pkg-config
 %else
 BuildRequires:  pkgconfig
 %endif
+BuildRequires:  gcc-c++
+BuildRequires:  protobuf-devel
 
 %description
 Protocol Buffers are a way of encoding structured data in an efficient yet
