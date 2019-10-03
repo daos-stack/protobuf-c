@@ -70,7 +70,7 @@ This package contains protobuf-c headers and libraries.
 %if "%{?dist}" != ".el7"
 %define build_opts --disable-protoc
 %else
-%define build_opts
+%define build_opts %{nil}
 %endif
 
 %build
