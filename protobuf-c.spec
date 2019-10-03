@@ -16,6 +16,8 @@ Source0:        https://github.com/protobuf-c/protobuf-c/releases/download/v%{ve
 
 %if 0%{?suse_version} >= 1315
 BuildRequires:  pkg-config
+%else
+BuildRequires:  pkgconfig
 %endif
 
 %description
@@ -33,7 +35,6 @@ extensible format. This package provides a code generator and run-time
 libraries to use Protocol Buffers from pure C (not C++).
 %endif
 
-%if 0%{?suse_version} == 0
 %package compiler
 Summary: Protocol Buffers C compiler
 Group: Development/Libraries
@@ -42,7 +43,6 @@ Requires: %{name} = %{version}-%{release}
 %description compiler
 This package contains a modified version of the Protocol Buffers
 compiler for the C programming language called protoc-c.
-%endif
 
 %package devel
 Summary:        Protocol Buffers C headers and libraries
@@ -62,8 +62,7 @@ This package contains protobuf-c headers and libraries.
 %setup -q
 
 %build
-%configure --disable-static --disable-protoc
-# disabled parallel build due to https://github.com/protobuf-c/protobuf-c/issues/156
+%configure --disable-static
 make
 
 %check
@@ -89,11 +88,10 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 %{_libdir}/libprotobuf-c.so.*
 %doc TODO LICENSE ChangeLog
 
-%if 0%{?suse_version} == 0
 %files compiler
 %defattr(-,root,root,-)
-#%{_bindir}/protoc-c
-%endif
+%{_bindir}/protoc-c
+%{_bindir}/protoc-gen-c
 
 %files devel
 %defattr(-,root,root,-)
