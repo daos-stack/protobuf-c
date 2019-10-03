@@ -67,7 +67,7 @@ This package contains protobuf-c headers and libraries.
 %setup -q
 
 # el7 protobuf v2.5.0 is too old to build the compiler
-%if "%{?dist}" != ".el7"
+%if "%{?dist}" == ".el7"
 %define build_opts --disable-protoc
 %else
 %define build_opts %{nil}
