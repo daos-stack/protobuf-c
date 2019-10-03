@@ -37,6 +37,8 @@ extensible format. This package provides a code generator and run-time
 libraries to use Protocol Buffers from pure C (not C++).
 %endif
 
+# el7 protobuf is too old to build the compiler
+%if "%{?dist}" != ".el7"
 %package compiler
 Summary: Protocol Buffers C compiler
 Group: Development/Libraries
@@ -45,6 +47,7 @@ Requires: %{name} = %{version}-%{release}
 %description compiler
 This package contains a modified version of the Protocol Buffers
 compiler for the C programming language called protoc-c.
+%endif
 
 %package devel
 Summary:        Protocol Buffers C headers and libraries
@@ -63,8 +66,15 @@ This package contains protobuf-c headers and libraries.
 %prep
 %setup -q
 
+# el7 protobuf v2.5.0 is too old to build the compiler
+%if "%{?dist}" != ".el7"
+%define build_opts --disable-protoc
+%else
+%define build_opts
+%endif
+
 %build
-%configure --disable-static
+%configure --disable-static %{build_opts}
 make
 
 %check
@@ -90,10 +100,13 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 %{_libdir}/libprotobuf-c.so.*
 %doc TODO LICENSE ChangeLog
 
+# el7 protobuf is too old to build the compiler
+%if "%{?dist}" != ".el7"
 %files compiler
 %defattr(-,root,root,-)
 %{_bindir}/protoc-c
 %{_bindir}/protoc-gen-c
+%endif
 
 %files devel
 %defattr(-,root,root,-)
@@ -107,6 +120,7 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 * Wed Oct 02 2019 John E. Malmberg <john.e.malmberg@intel.com> - 1.3.1-1
 - new upstream release
 - Fix most SUSE rpmlint issues
+- protoc needs to be disabled for el7 targets
 
 * Thu Apr 04 2019 Brian J. Murrell <brian.murrell@intel.com> - 1.3.0-1
 - new upstream release
