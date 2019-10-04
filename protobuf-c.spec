@@ -38,7 +38,7 @@ libraries to use Protocol Buffers from pure C (not C++).
 %endif
 
 # el7 protobuf is too old to build the compiler
-%if "%{?dist}" != ".el7"
+%if %{?rhel} != 7
 %package compiler
 Summary: Protocol Buffers C compiler
 %if 0%{?suse_version} >= 1315
@@ -63,7 +63,7 @@ Requires:       lib%{name}1 = %{version}-%{release}
 Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 %endif
-%if "%{?dist}" != ".el7"
+%if %{?rhel} != 7
 Requires:       %{name}-compiler = %{version}-%{release}
 %endif
 
@@ -74,7 +74,7 @@ This package contains protobuf-c headers and libraries.
 %setup -q
 
 # el7 protobuf v2.5.0 is too old to build the compiler
-%if "%{?dist}" == ".el7"
+%if %{?rhel} == 7
 %define build_opts --disable-protoc
 %else
 %define build_opts %{nil}
@@ -109,7 +109,7 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 %doc TODO LICENSE ChangeLog
 
 # el7 protobuf is too old to build the compiler
-%if "%{?dist}" != ".el7"
+%if %{?rhel} != 7
 %files compiler
 %defattr(-,root,root,-)
 %{_bindir}/protoc-c
