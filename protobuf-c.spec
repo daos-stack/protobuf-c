@@ -128,7 +128,7 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 * Wed Oct 02 2019 John E. Malmberg <john.e.malmberg@intel.com> - 1.3.1-1
 - new upstream release
 - Fix most SUSE rpmlint issues
-- protoc needs to be disabled for el7 targets
+- protoc requires protobuf > 3.6.  Available on Suse, and rhel 8+
 
 * Thu Apr 04 2019 Brian J. Murrell <brian.murrell@intel.com> - 1.3.0-1
 - new upstream release
