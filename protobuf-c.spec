@@ -21,7 +21,7 @@ BuildRequires:  pkgconfig
 %endif
 BuildRequires:  gcc-c++
 BuildRequires:  protobuf-devel
-%if 0%{?rhel} = 7
+%if 0%{?rhel} == 7
 Obsoletes: %{name}-compiler <= %{version}-%{release}
 %endif
 
