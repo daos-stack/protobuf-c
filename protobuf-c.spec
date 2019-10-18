@@ -1,6 +1,6 @@
 Name:           protobuf-c
 Version:        1.3.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        C bindings for Google's Protocol Buffers
 
 %if 0%{?suse_version} >= 1315
@@ -21,6 +21,9 @@ BuildRequires:  pkgconfig
 %endif
 BuildRequires:  gcc-c++
 BuildRequires:  protobuf-devel
+%if 0%{?rhel} == 7
+Obsoletes: %{name}-compiler <= %{version}-%{release}
+%endif
 
 %description
 Protocol Buffers are a way of encoding structured data in an efficient yet
@@ -125,6 +128,10 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 %{_libdir}/pkgconfig/libprotobuf-c.pc
 
 %changelog
+* Tue Oct 15 2019 Brian J. Murrell <brian.murrell@intel.com> - 1.3.1-2
+- not building a protobuf-c-compiler package means needing to
+  Obsoletes: it
+
 * Wed Oct 02 2019 John E. Malmberg <john.e.malmberg@intel.com> - 1.3.1-1
 - new upstream release
 - Fix most SUSE rpmlint issues
