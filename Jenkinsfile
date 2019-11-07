@@ -41,5 +41,4 @@
 //@Library(value="pipeline-lib@your_branch") _
 
 // Ubuntu 19.04+ provides this package.
-packageBuildingPipeline(['distros': ['centos7', 'sles12.3', 'leap42.3',
-                         'leap15']])
+packageBuildingPipelineDAOS(['distros': ['centos7', 'leap15']])
