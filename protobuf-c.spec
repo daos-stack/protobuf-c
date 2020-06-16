@@ -1,6 +1,6 @@
 Name:           protobuf-c
 Version:        1.3.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        C bindings for Google's Protocol Buffers
 
 %if 0%{?suse_version} >= 1315
@@ -108,6 +108,7 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 %files
 %endif
 %defattr(-,root,root,-)
+%license LICENSE
 %{_libdir}/libprotobuf-c.so.*
 %doc TODO LICENSE ChangeLog
 
@@ -115,12 +116,14 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 %if 0%{?rhel} != 7
 %files compiler
 %defattr(-,root,root,-)
+%license LICENSE
 %{_bindir}/protoc-c
 %{_bindir}/protoc-gen-c
 %endif
 
 %files devel
 %defattr(-,root,root,-)
+%license LICENSE
 %dir %{_includedir}/google
 %{_includedir}/protobuf-c
 %{_includedir}/google/protobuf-c
@@ -128,6 +131,9 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 %{_libdir}/pkgconfig/libprotobuf-c.pc
 
 %changelog
+* Tue Jun 16 2020 Brian J. Murrell <brian.murrell@intel.com> - 1.3.1-3
+- Add %license macro to packages
+
 * Tue Oct 15 2019 Brian J. Murrell <brian.murrell@intel.com> - 1.3.1-2
 - not building a protobuf-c-compiler package means needing to
   Obsoletes: it
