@@ -1,6 +1,6 @@
 Name:           protobuf-c
-Version:        1.3.1
-Release:        3%{?dist}
+Version:        1.3.3
+Release:        1%{?dist}
 Summary:        C bindings for Google's Protocol Buffers
 
 %if 0%{?suse_version} >= 1315
@@ -131,6 +131,9 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libprotobuf-c.la
 %{_libdir}/pkgconfig/libprotobuf-c.pc
 
 %changelog
+* Sat Jan 16 2021 Tom Nabarro <tom.nabarro@intel.com> - 1.3.3-1
+- bump version
+
 * Tue Jun 16 2020 Brian J. Murrell <brian.murrell@intel.com> - 1.3.1-3
 - Add %license macro to packages
 
